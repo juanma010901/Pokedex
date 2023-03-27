@@ -83,7 +83,7 @@ body {
 
 main{
     min-height: 77vh;
-
+    background-color: Linen;
 }
 
 .repositorio-tarjetas{
@@ -136,6 +136,7 @@ main{
 }
 
 .line{
+    margin: 5px 0px;
     width: 100%;
     color: black;
 }
@@ -150,7 +151,12 @@ main{
     border: solid black 1px;
     border-radius: 20px;
     background-color: #FFCB05;
-    margin: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.types p{
+    text-align: center;
 }
 
 .img{
@@ -173,4 +179,12 @@ background-blend-mode: multiply, screen, normal;
     margin-top: 8vh;
     background-color: #E60012;
     height: 15vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer a{
+    color: white;
 }

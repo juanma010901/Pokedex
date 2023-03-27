@@ -33,7 +33,8 @@ fetch("https://pokeapi.co/api/v2/pokemon")
 
           let experiencia = document.createElement("h4");
           experiencia.textContent = `HP ${base_experience}`;
-          experiencia.classList.add = "base_experience"
+          experiencia.classList.add = "base_experience";
+          experiencia.classList.add = "description"
 
           tarjeta.id = pokemonName;
           tarjetas.push(pokemonName)
@@ -44,6 +45,9 @@ fetch("https://pokeapi.co/api/v2/pokemon")
           img.classList.add("img");
           img.src = imageUrl;
           img.alt = pokemonName;
+
+          let tipos = document.createElement("h4");
+          tipos.textContent = "Tipo"
 
           // Creación del contenedor de tipos
           let types = document.createElement("div");
@@ -63,6 +67,7 @@ fetch("https://pokeapi.co/api/v2/pokemon")
           tarjeta.appendChild(experiencia);
           tarjeta.appendChild(img);
           tarjeta.appendChild(line);
+          tarjeta.appendChild(tipos);
           tarjeta.appendChild(types);
           contenedorTarjetas.appendChild(tarjeta);
 
@@ -75,8 +80,8 @@ fetch("https://pokeapi.co/api/v2/pokemon")
 
 
 function buscar() {
-  let name = document.getElementById("name").value;
-  cancelar = document.getElementById("cancelar");
+  let name = document.getElementById("name").value.toLowerCase();
+  let cancelar = document.getElementById("cancelar");
   cancelar.style.display = "block";
   for (let i = 0; i < tarjetas.length; i++) {
     let tarjeta = document.getElementById(tarjetas[i]);
@@ -90,4 +95,15 @@ function buscar() {
       tarjeta.style.display = "none";
     }
   }
+}
+
+function cancelar() {
+  let name = document.getElementById("name");
+  let cancelar = document.getElementById("cancelar");
+  for (let i = 0; i < tarjetas.length; i++) {
+    let tarjeta = document.getElementById(tarjetas[i]);
+    tarjeta.style.display = "block";
+  }
+  cancelar.style.display = "none";
+  name.value = "";
 }
