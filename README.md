@@ -2,7 +2,7 @@
 
 # Pokedex
 
-> Pekedex elaborado con HTML, CSS, Java Script consumiendo la información de la siguiente [API](https://pokeapi.co/).
+> Pokedex elaborado con HTML, CSS, Java Script consumiendo la información de la siguiente [API](https://pokeapi.co/).
 
 Accede haciendo click en el siguiente icono:
 <a href="https://juanma010901.github.io/Pokedex/" target="_blank">
@@ -25,6 +25,10 @@ Accede haciendo click en el siguiente icono:
 
 - Los resultados para la búsqueda de por ejemplo el siguiente pokemon "Rattata" serían:
 ![image](https://user-images.githubusercontent.com/119358374/228381456-8e545783-ca03-4866-a6cc-2904f1c8558d.png)
+
+## Mirar más información
+- Adicional a la información presentada en la cara frontal de las cards, la página cuenta con la posibilidad de observar más información relacionada con el pokemon en cuestión, si se pasa el puntero por encima de la card.
+![image](https://user-images.githubusercontent.com/119358374/228395209-eab05c65-923d-4048-bdcc-78fe0e9da544.png)
 
 
 ## Tecnologías utilizadas 🛠️
