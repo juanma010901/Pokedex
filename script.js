@@ -1,90 +1,98 @@
+// Arreglo para realizar la búsqueda de Pokemones
 let tarjetas = []
 
+// Petición principal a la API PokeAPI 
 fetch("https://pokeapi.co/api/v2/pokemon")
   .then((response) => response.json())
   .then((data) => {
     // console.log(data.results);
+    // Selección del contenedore de cards creado en HTML
     const contenedorTarjetas = document.querySelector(".repositorio-tarjetas");
 
+    // Realizar una segunta petición para cada nombre de los Pokemones recibidos
     data.results.forEach((pokemon) => {
       fetch(pokemon.url)
         .then((response) => response.json())
         .then((pokemonData) => {
 
           // console.log(pokemonData);`
-          // Creación de la tarjeta para cada Pokemon
+          // Creación de la tarjeta para cada Pokemon con las caras Front y Back
           const tarjeta = document.createElement("div");
           tarjeta.classList.add("tarjeta");
           tarjeta.classList.add("imagen");
 
+          // Cara de la cara Frontal
           const front = document.createElement("div");
           front.classList.add("tarjeta");
           front.classList.add("face");
           front.classList.add("front");
 
+          // Creación de la cara Trasera
           const back = document.createElement("div");
           back.classList.add("tarjeta");
           back.classList.add("face");
           back.classList.add("back");
           
-
-          // Búsqueda del nombre del Pokemon actual
+          // Información recibida con la petición al nombre del Pokemon actual
           // console.log(pokemonData.name);
           const pokemonName = pokemonData.name;
           let mayusName = pokemonName.charAt(0).toUpperCase() + pokemonName.substring(1);
-          // console.log(mayusName);
+          tarjeta.id = pokemonName;
+          
+          // Agrego el nombre del Pokemon actual al arreglo para realizar la busqueda posteriormente
+          tarjetas.push(pokemonName);
+
+          // Pedir la experiencia del Pokemon a la API
           const base_experience = pokemonData.base_experience;
           front.innerHTML = `
           <h2 class="nombre">${mayusName}</h2>
           `;
-          // <img src="${small_img}" alt="${pokemonName}" class="small_img description"></img>
-          // title = document.createElement("h1");
-          // title.textContent(mayusName);
-          // tarjeta.appendChild(title);
 
+          // Enviar la experiencia del Pokemon actual al frontend
           let experiencia = document.createElement("h4");
           experiencia.textContent = `HP ${base_experience}`;
           experiencia.classList.add = "base_experience";
           experiencia.classList.add = "description"
 
-          tarjeta.id = pokemonName;
-          tarjetas.push(pokemonName)
-
-          // Petición de la imagen desde la API y creacion de elemntos de imagen
+          // Petición de la imagen desde la API y creacion de elementos de imagen
           const imageUrl = pokemonData.sprites.other.dream_world.front_default;
           const img = document.createElement("img");
           img.classList.add("pokemon");
           img.src = imageUrl;
           img.alt = pokemonName;
 
+          // Petición a la API para traer una imágen diferente y agregarla a la cara posterior
           const small_img_url = pokemonData.sprites.front_default;
           const small_img = document.createElement("img");
           small_img.classList.add("small_img");
           small_img.src = small_img_url;
           small_img.alt = pokemonName;
 
+          // Se crean el elemento de Tipo en el cual se agregaran posteriormente el(los) tipos(s)
           let tipos = document.createElement("h4");
           tipos.textContent = "Tipo"
 
           // Creación del contenedor de tipos
           let types = document.createElement("div");
           types.classList.add("types");
+          // Recorrer los tipos para observar si es uno o varios
           pokemonData.types.forEach((tipo) => {
-            // console.log(tipo.type.name);
             let type = document.createElement("p");
             type.textContent = tipo.type.name;
             types.appendChild(type);
-            // types.innerHTML = `<h3 class="type">${type.type.name}</h3>`;
           });
 
+          // Creación de la línea horizontal que va en la cara frontal de la card
           let line = document.createElement("hr");
           line.classList.add("line");
 
           // Elementos de la cara back
+          // Pedir Peso a la API y agregarlo a la cara posterior
           const weight = pokemonData.weight;
           const peso = document.createElement("h3");
           peso.textContent = "Peso: " + weight;
 
+          // Pedir Altura a la API y agregarlo a la cara posterior
           const height = pokemonData.height;
           const altura = document.createElement("h3");
           altura.textContent = "Altura: " + height;
@@ -96,12 +104,16 @@ fetch("https://pokeapi.co/api/v2/pokemon")
           front.appendChild(tipos);
           front.appendChild(types);
 
+          // Agregar elementos al contenedor de la cara posterior
           back.appendChild(small_img);
           back.appendChild(peso);
           back.appendChild(altura);
 
+          // Agregar cada cara a la tarjeta actual
           tarjeta.appendChild(front);
           tarjeta.appendChild(back);
+
+          // Agregar la tarjeta actual al contenedor de tarjetas creado en el HTML
           contenedorTarjetas.appendChild(tarjeta);
 
         })
@@ -111,11 +123,14 @@ fetch("https://pokeapi.co/api/v2/pokemon")
   })
   .catch((error) => console.error(error));
 
-
+// Función atada al botón de buscar creado en HTML
 function buscar() {
+  // Cambiar el valor de entrada en el input a minúsculas
   let name = document.getElementById("name").value.toLowerCase();
   let cancelar = document.getElementById("cancelar");
   cancelar.style.display = "block";
+
+  // Condiciones para ocultar y mostrar las cards y el boton de cancelar
   for (let i = 0; i < tarjetas.length; i++) {
     let tarjeta = document.getElementById(tarjetas[i]);
     if (name === ""){
@@ -130,9 +145,11 @@ function buscar() {
   }
 }
 
+// Función atada a la Xs para salir de la búsqueda
 function cancelar() {
   let name = document.getElementById("name");
   let cancelar = document.getElementById("cancelar");
+  // Acciones a realizar si se presiona el botón de cancelar
   for (let i = 0; i < tarjetas.length; i++) {
     let tarjeta = document.getElementById(tarjetas[i]);
     tarjeta.style.display = "flex";
