@@ -7,7 +7,6 @@
     <title>Pokedex</title>
     <link rel="icon" href="assets/th.webp" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 
@@ -18,9 +17,10 @@
                 <h1 id="title">Pokedex</h1>
                 <div class="buscar">
                     <button class="boton" id="cancelar" type="submit" onclick="cancelar()">
-                        <span class="material-symbols-outlined">
+                        <!-- <span class="material-symbols-outlined">
                             close
-                        </span>
+                        </span> -->
+                        <span class="material-symbols-outlined close">&times;</span>
                     </button>
                     <input type="text" id="name" placeholder="Nombre del Pokemon">
                     <button class="boton" type="submit" onclick="buscar()">Buscar</button>
@@ -31,7 +31,12 @@
 
     <main>
         <div class="repositorio-tarjetas" id="repositorio-tarjetas"></div>
-
+        <div id="miModal" class="modal">
+            <div class="modal-content">
+              <span class="close boton" id="close">&times;</span>
+              <h2 id="modal_name">Título del modal</h2>
+            </div>
+        </div>
     </main>
 
     <footer>

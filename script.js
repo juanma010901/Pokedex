@@ -97,6 +97,32 @@ fetch("https://pokeapi.co/api/v2/pokemon")
           const altura = document.createElement("h3");
           altura.textContent = "Altura: " + height;
 
+          // Agregar botón de mostrar modal
+          const boton_modal = document.createElement("button");
+          boton_modal.textContent = "Más"
+          boton_modal.classList.add("boton");
+          boton_modal.setAttribute("id", `${pokemonName}`);
+          boton_modal.setAttribute("type", "submit");
+
+          // Info del Modal
+
+
+          const modal = document.getElementById("miModal");
+          boton_modal.addEventListener("click", function() {
+            modal.style.display = "block";
+            console.log(boton_modal.id);
+            modal_name = document.getElementById("modal_name");
+            modal_name.innerHTML = `${mayusName}`;
+            let subcontenedor_izquierdo = document.createElement("p");
+            modal.appendChild(subcontenedor_izquierdo);
+            subcontenedor_izquierdo.innerHTML = `Hello`
+          })
+
+          var close = document.getElementById("close");
+          close.addEventListener("click", function() {
+            modal.style.display = "none";
+          });
+
           // Agregar los elementos creados a los contenedores padres y las tarjetas al contenedor de tarjetas
           front.appendChild(experiencia);
           front.appendChild(img);
@@ -108,6 +134,10 @@ fetch("https://pokeapi.co/api/v2/pokemon")
           back.appendChild(small_img);
           back.appendChild(peso);
           back.appendChild(altura);
+          back.appendChild(boton_modal);
+
+          // Contenido del modal
+          
 
           // Agregar cada cara a la tarjeta actual
           tarjeta.appendChild(front);
