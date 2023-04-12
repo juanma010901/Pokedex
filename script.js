@@ -108,19 +108,38 @@ fetch("https://pokeapi.co/api/v2/pokemon")
 
 
           const modal = document.getElementById("miModal");
+          const modalContent = document.getElementById("info");
+          modalContent.style.display = 'flex';
           boton_modal.addEventListener("click", function() {
             modal.style.display = "block";
-            console.log(boton_modal.id);
+            // console.log(boton_modal.id);
             modal_name = document.getElementById("modal_name");
             modal_name.innerHTML = `${mayusName}`;
-            let subcontenedor_izquierdo = document.createElement("p");
-            modal.appendChild(subcontenedor_izquierdo);
-            subcontenedor_izquierdo.innerHTML = `Hello`
+            const imagen = document.getElementById("imagen");
+            imagen.src = imageUrl;
+            const habilidades = document.getElementById("habilidades");
+            pokemonData.abilities.forEach((arrow) => {
+              let habilidad = document.createElement("p");
+              habilidad.classList.add("habilidad");
+              habilidad.textContent = arrow.ability.name;
+              habilidades.appendChild(habilidad);
+            });
+            const movimientos = document.getElementById("movimientos");
+            pokemonData.moves.slice(0, 2).forEach((arrow) => {
+              let movimiento = document.createElement("p");
+              movimiento.classList.add("movimiento");
+              movimiento.textContent = arrow.move.name;
+              movimientos.appendChild(movimiento);
+            });
           })
 
           var close = document.getElementById("close");
           close.addEventListener("click", function() {
             modal.style.display = "none";
+            const habilidades = document.getElementById("habilidades");
+            const movimientos = document.getElementById("movimientos");
+            habilidades.innerHTML = "";
+            movimientos.innerHTML = "";
           });
 
           // Agregar los elementos creados a los contenedores padres y las tarjetas al contenedor de tarjetas
