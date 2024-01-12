@@ -1,4 +1,9 @@
-![Visitantes](https://visitor-badge.glitch.me/badge?page_id=juanma010901.Pokedex&left_text=Visitantes)
+![Visitantes](https://visitor-badge.laobi.icu/badge?page_id=juanma010901.Pokedex&left_text=Visitantes)
+
+<!--
+https://visitor-badge.glitch.me/badge?page_id=juanma010901.visitor-badge
+https://visitor-badge.laobi.icu/badge?page_id=juanma010901.visitor-badge
+-->
 
 # Pokedex
 
